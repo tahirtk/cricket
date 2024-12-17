@@ -2,11 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>Player Statistics</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+   
+
+<!-- Custom Sticky Navbar -->
+<nav class="custom-navbar">
+    <div class="custom-navbar-container">
+        <div class="custom-logo">
+            <img src="icc.png" alt="ICC Logo">
+        </div>
+    
+        <div class="custom-profile-icon">
+            <i class="fa-regular fa-user fa-lg" style="color: #ffffff;"></i>
+        </div>
+    </div>
+</nav>
+
+
+    <div class="match-score">
+        <div class="team">Team A</div>
+        <div class="score">5 - 4</div>
+        <div class="team">Team T</div>
+    </div>
     <div class="table-container">
         <h1>Players Statistics</h1>
         <table>
@@ -14,7 +36,8 @@
                 <tr>
                     <th>Player Name</th>
                     <th>Runs</th>
-                    <th>Wickets</th>
+                    <th>4's</th>
+                    <th>6's</th>
                     <th>Matches Played</th>
                 </tr>
             </thead>
@@ -24,54 +47,72 @@
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Ahmed</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Faizan</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Hassan</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Haider</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Arham</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Ayyan</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Umer</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>Zain</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
             </tbody>
         </table>
@@ -88,54 +129,119 @@
             </thead>
             <tbody>
                 <tr>
+                    <td style="color: gold;">1</td>
                     <td>Tahir</td>
-                    <td>0</td>
                     <td>0</td>
                 
                 </tr>
                 <tr>
+                    <td style="color: silver;">2</td>
                     <td>Ahmed</td>
                     <td>0</td>
-                    <td>0</td>
                     
                 </tr>
                 <tr>
+                    <td style="color: brown;">3</td>
                     <td>Faizan</td>
                     <td>0</td>
-                    <td>0</td>
                     
                 </tr>
                 <tr>
+                    <td>4</td>
                     <td>Hassan</td>
                     <td>0</td>
-                    <td>0</td>
                     
                 </tr>
                 <tr>
+                    <td>5</td>
                     <td>Haider</td>
                     <td>0</td>
-                    <td>0</td>
                     
                 </tr>
                 <tr>
+                    <td>6</td>
                     <td>Arham</td>
                     <td>0</td>
-                    <td>0</td>
                 </tr>
                 <tr>
-                    <td>Ayyan</td>
-                    <td>0</td>
+                    <td>7</td>
+                    <td>Umer</td>
                     <td>0</td>
                     
                 </tr>
                 <tr>
-                    <td>Umer</td>
-                    <td>0</td>
+                    <td>8</td>
+                    <td>Zain</td>
                     <td>0</td>
                 </tr>
                 <tr>
+                    <td>9</td>
+                    <td>Ayyan</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="rank-box">
+        <h2>Wickets Rank Table</h2>
+        <table class="rank-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player Name</th>
+                    <th>Wickets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color: gold;">1</td>
+                    <td>Tahir</td>
+                    <td>0</td>
+                
+                </tr>
+                <tr>
+                    <td style="color: silver;">2</td>
+                    <td>Ahmed</td>
+                    <td>0</td>
+                    
+                </tr>
+                <tr>
+                    <td style="color: brown;">3</td>
+                    <td>Faizan</td>
+                    <td>0</td>
+                    
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Hassan</td>
+                    <td>0</td>
+                    
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Haider</td>
+                    <td>0</td>
+                    
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Arham</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Umer</td>
+                    <td>0</td>
+                    
+                </tr>
+                <tr>
+                    <td>8</td>
                     <td>Zain</td>
                     <td>0</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Ayyan</td>
                     <td>0</td>
                 </tr>
             </tbody>
