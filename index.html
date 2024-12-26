@@ -4,29 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>Player Statistics</title>
+    
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-   
+  
 
-<!-- Custom Sticky Navbar -->
-<nav class="custom-navbar">
-    <div class="custom-navbar-container">
-        <div class="custom-logo">
-            <img src="icc.png" alt="ICC Logo">
+    <nav class="navbar">
+        <div class="navbar-container">
+          <div class="brand"><img src="./icc.png" alt=""></div>
+          <button class="toggle" id="toggle">☰</button>
+          <div class="menu" id="menu">
+            <a href="matches.html">Matches</a>
+            <a href="#">Videos</a>
+            <a href="#">Shop</a>
+           
+          </div>
         </div>
-    
-        <div class="custom-profile-icon">
-            <i class="fa-regular fa-user fa-lg" style="color: #ffffff;"></i>
-        </div>
-    </div>
-</nav>
+      </nav>
 
 
     <div class="match-score">
         <div class="team">Team A</div>
-        <div class="score">7 - 4</div>
+        <div class="score">7</div>
+        <div class="slash">-</div>
+        <div class="score2">4 </div>
         <div class="team">Team T</div>
     </div>
    
@@ -42,19 +45,20 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="color: gold;">1</td>
+                
+                    <td>1</td>
                     <td>Hassan</td>
                     <td>39</td>
                 
                 </tr>
                 <tr>
-                    <td style="color: silver;">2</td>
+                    <td>2</td>
                     <td>Tahir</td>
                     <td>29</td>
                     
                 </tr>
                 <tr>
-                    <td style="color: brown;">3</td>
+                    <td>3</td>
                     <td>Faizan</td>
                     <td>25</td>
                     
@@ -102,19 +106,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="color: gold;">1</td>
+                    <td>1</td>
                     <td>Tahir</td>
                     <td>3</td>
                 
                 </tr>
                 <tr>
-                    <td style="color: silver;">2</td>
+                    <td >2</td>
                     <td>Hassan</td>
                     <td>2</td>
                     
                 </tr>
                 <tr>
-                    <td style="color: brown;">3</td>
+                    <td>3</td>
                     <td>Faizan</td>
                     <td>0</td>
                     
@@ -163,19 +167,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="color: gold;">1</td>
+                    <td >1</td>
                     <td>Faizan</td>
                     <td>3</td>
                 
                 </tr>
                 <tr>
-                    <td style="color: silver;">2</td>
+                    <td >2</td>
                     <td>Hassan</td>
                     <td>2</td>
                     
                 </tr>
                 <tr>
-                    <td style="color: brown;">3</td>
+                    <td >3</td>
                     <td>Ahmed</td>
                     <td>0</td>
                     
@@ -224,19 +228,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="color: gold;">1</td>
+                    <td >1</td>
                     <td>Hassan</td>
                     <td>5</td>
                 
                 </tr>
                 <tr>
-                    <td style="color: silver;">2</td>
+                    <td >2</td>
                     <td>Tahir</td>
                     <td>3</td>
                     
                 </tr>
                 <tr>
-                    <td style="color: brown;">3</td>
+                    <td >3</td>
                     <td>Faizan</td>
                     <td>1</td>
                     
@@ -273,5 +277,6 @@
             </tbody>
         </table>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

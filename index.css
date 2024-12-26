@@ -1,69 +1,85 @@
-body {
-    
-    font-family: Arial, sans-serif;
+/* Reset */
+body, html {
     margin: 0;
     padding: 0;
-    background-color:white ;
-}
-
-/* Custom Sticky Navbar Styling */
-.custom-navbar {
-    position: sticky;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    padding-top: 30px;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    position: fixed; /* Fixed at the top */
     top: 0;
-    z-index: 999;
-    background-color: #071D67; /* Custom blue color */
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: #002f6c; /* ICC-style background */
     color: white;
+    z-index: 1000;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
-    padding: 10px 20px;
     height: 70px;
-}
-
-.custom-navbar-container {
+  }
+  
+  .navbar-container {
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+    padding: 10px 20px;
+  }
+  
+  .brand img {
 
-.custom-logo {
+    height: 20px;
+    width: 60px;
+    margin-left: 15px;
+    margin-top: 7px;
     
-
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    gap: 8px;
-}
-
-.custom-logo img {
-    padding-top: 20px;
-    padding-left: 10px;
-    width: 85px;
-    height: 30px;
-}
-
-.custom-nav-links {
-    list-style-type: none;
+  }
+  
+  .menu {
     display: flex;
     gap: 20px;
-    margin: 0;
-}
-
-.custom-nav-links a {
-    color: white;
+   
+  }
+  
+  .menu a {
     text-decoration: none;
-    font-weight: 600;
-}
-
-.custom-nav-links a:hover {
-    text-decoration: underline;
-}
-
-.custom-profile-icon {
-    font-size: 20px;
-    padding-top: 20px;
-    padding-right: 20px;
-
-}
+    color: white;
+    /* font-size: 1em; */
+  }
+  
+  .toggle {
+    display: none; /* Hidden on larger screens */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  /* Responsive Menu */
+  @media (max-width: 768px) {
+    .menu {
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      position: absolute;
+      top: 50px; /* Below the navbar */
+      right: 20px;
+      width: 50%;
+      box-shadow: 0 4px 18px #ffffff;
+      background-color: #002f6c;
+      padding: 10px ;
+    }
+  
+    .menu.show {
+      display: flex; /* Show menu when toggled */
+    }
+  
+    .toggle {
+      display: block; /* Visible on smaller screens */
+    }
+  }
 
 
 
@@ -76,10 +92,10 @@ body {
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    margin: 20px auto;
+    margin: 40px auto;
     box-shadow: 0 4px 6px #000000;
     max-width: 800px;
-    width: 60%;
+    width: 85%;
     white-space: nowrap; /* Prevent text from wrapping */
 }
 
@@ -93,7 +109,18 @@ body {
     font-weight: bold;
     color: #4CAF50;
     margin: 0 10px;
+   
 }
+
+.score2 {
+    font-weight: bold;
+    color: red;
+    margin: 0 10px;
+}
+
+
+
+
 
 @media (max-width: 768px) {
     .match-score {
@@ -102,57 +129,11 @@ body {
     }
 }
 
-.table-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color:#ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 18px #000000;
-}
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-thead {
-    background-color: #071d67;
-    color: white;
-}
-
-th, td {
-    text-align: center;
-    padding: 12px;
-    border: 1px solid #ddd;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-th {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-td {
-    font-size: 14px;
-}
 
 .rank-box {
-    width: 60%;
-    margin: 20px auto;
+    width: 80%;
+    margin: 40px auto;
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -169,14 +150,13 @@ td {
 
 .rank-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse:collapse;
     margin-top: 10px;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .rank-table th, .rank-table td {
     padding: 10px;
-    border: 1px solid #ddd;
     text-align: center;
     font-size: 16px;
 }
@@ -191,7 +171,9 @@ td {
     background-color: #f2f2f2;
 }
 
-.rank-table tr:hover {
-    background-color: #ddd;
+.dot{
+     
+     color: #000000;
 }
+
 
