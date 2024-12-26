@@ -13,7 +13,7 @@ body, html {
     top: 0;
     left: 0;
     width: 100%; /* Full width */
-    background-color: #002f6c; /* ICC-style background */
+    background-color:  #071d67; /* ICC-style background */
     color: white;
     z-index: 1000;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
