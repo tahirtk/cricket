@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0">
     <title>Document</title>
     <link rel="stylesheet" href="matches.css">
     <link rel="stylesheet" href="index.css">
 </head>
-<body>
+<body style="background-color: white;">
     <nav class="navbar">
         <div class="navbar-container">
           <div class="brand"><img src="./icc.png" alt=""></div>
@@ -26,8 +26,16 @@
       <div class="pdf-container">
         <h3 style="margin-left: 5px;">Match 1</h3>
         <!-- Embed the PDF directly using the embed tag -->
-        <embed src="./Match 1.pdf" class="pdf-display" frameborder="0">
+        <iframe class="pdf" src="./Match 1.pdf" frameborder="0"></iframe>  
+
+        <h3 style="margin-left: 5px;">Match 2</h3>
+        <!-- Embed the PDF directly using the embed tag -->
+        <iframe class="pdf" src="./Match 2.pdf" frameborder="0"></iframe>
+
     </div>
+
+    
+
 
        
         
@@ -36,4 +44,5 @@
 
       <script src="script.js"></script>
 </body>
+
 </html>

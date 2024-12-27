@@ -30,10 +30,10 @@ body, html {
   
   .brand img {
 
-    height: 20px;
-    width: 60px;
+    height: 22px;
+    width: 62px;
     margin-left: 15px;
-    margin-top: 7px;
+    margin-top: 10px;
     
   }
   
@@ -66,9 +66,9 @@ body, html {
       position: absolute;
       top: 50px; /* Below the navbar */
       right: 20px;
-      width: 50%;
+      width: 84%;
+      background-color: #071d67;
       box-shadow: 0 4px 18px #ffffff;
-      background-color: #002f6c;
       padding: 10px ;
     }
   
@@ -95,7 +95,7 @@ body, html {
     margin: 40px auto;
     box-shadow: 0 4px 6px #000000;
     max-width: 800px;
-    width: 85%;
+    width: 55%;
     white-space: nowrap; /* Prevent text from wrapping */
 }
 
@@ -164,16 +164,74 @@ body, html {
 .rank-table th {
     background-color: #071d67;
     color: white;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .rank-table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.dot{
-     
-     color: #000000;
+.footer {
+  background-color:white;
+  color: black;
+  padding: 20px 10px;
+  text-align: center;
 }
+
+
+
+.partners-section {
+  margin: 20px 0;
+}
+
+.partners-section h3 {
+  margin-bottom: 10px;
+}
+
+.partners-section img {
+  margin: 0 5px;
+  width: 100px;
+  height: auto;
+}
+
+.social-links {
+  margin: 20px 0;
+}
+
+.social-links a {
+  margin: 0 10px;
+  color: black;
+  text-decoration: none;
+  font-style: oblique;
+  font-size: 13px;
+}
+
+
+
+.legal {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.legal a {
+  color: black;
+  text-decoration: none;
+}
+
+.legal img {
+  height: 100px;
+  width: 100px;
+
+}
+
+@media (max-width: 600px) {
+  .partners-section img {
+    width: 80px;
+  }
+}
+
+
 
 
