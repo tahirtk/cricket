@@ -95,7 +95,7 @@ body, html {
     margin: 40px auto;
     box-shadow: 0 4px 6px #000000;
     max-width: 800px;
-    width: 55%;
+    width: 65%;
     white-space: nowrap; /* Prevent text from wrapping */
 }
 
@@ -231,7 +231,6 @@ body, html {
     width: 80px;
   }
 }
-
 
 
 
