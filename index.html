@@ -43,169 +43,110 @@
         <div class="team">Team A</div>
         <div class="score"><i class="fas fa-chevron-up"></i> 10</div>
         <div class="slash">-</div>
-        <div class="score2">5 <i class="fas fa-chevron-down"></i></div>
+        <div class="score2">7 <i class="fas fa-chevron-down"></i></div>
         <div class="team">Team T</div>
     </div>
+      
 
     <div class="flip-card">
         <div class="flip-card-inner">
-            
-          <!-- Front Table -->
+      
+          <!-- Front Table: Runs -->
           <div class="flip-card-front">
             <div class="rank-box">
               <h2>Runs Rank Table</h2>
               <table class="rank-table">
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th>Rank</th>
-                        <th>Player Name</th>
-                        <th>Runs</th>
-                    </tr>
+                  <tr>
+                    <th></th>
+                    <th>Rank</th>
+                    <th>Player Name</th>
+                    <th>Runs</th>
+                  </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>1</td>
-                        <td>Hassan</td>
-                        <td>90</td>
-                    
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>2</td>
-                        <td>Tahir</td>
-                        <td>85</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>3</td>
-                        <td>Faizan</td>
-                        <td>46</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>4</td>
-                        <td>Haider</td>
-                        <td>38</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>5</td>
-                        <td>Ahmed</td>
-                        <td>37</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>6</td>
-                        <td>Umer</td>
-                        <td>29</td>
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>7</td>
-                        <td>Arham</td>
-                        <td>18</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>8</td>
-                        <td>Ayyan</td>
-                        <td>2</td>
-                    </tr>
+                <tbody id="runsTable">
+                  <tr>
+                    <td style="color: red;"><i class="fas fa-chevron-down"></i></td><td>1</td><td>Hassan</td><td class="runs">100</td>
+                  </tr>
+                  <tr>
+                    <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>2</td><td>Tahir</td><td class="runs">111</td>
+                  </tr>
+                  <tr>
+                    <td style="color: red;"><i class="fas fa-chevron-down"></i></td><td>3</td><td>Faizan</td><td class="runs">47</td>
+                  </tr>
+                  <tr>
+                    <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>4</td><td>Haider</td><td class="runs">51</td>
+                  </tr>
+                  <tr>
+                    <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>5</td><td>Ahmed</td><td class="runs">54</td>
+                  </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>6</td><td>Umer</td><td class="runs">39</td>
+                  </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>7</td><td>Arham</td><td class="runs">18</td>
+                  </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>8</td><td>Ayyan</td><td class="runs">2</td>
+                  </tr>
                 </tbody>
-            </table>
+              </table>
             </div>
           </div>
       
-          <!-- Back Table -->
+          <!-- Back Table: Wickets -->
           <div class="flip-card-back">
             <div class="rank-box">
               <h2>Wickets Rank Table</h2>
-             
               <table class="rank-table">
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th>Rank</th>
-                        <th>Player Name</th>
-                        <th>Wickets</th>
-                    </tr>
+                  <tr>
+                    <th></th>
+                    <th>Rank</th>
+                    <th>Player Name</th>
+                    <th>Wickets</th>
+                  </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>1</td>
-                        <td>Tahir</td>
-                        <td>5</td>
-                    
+                <tbody id="wicketsTable">
+                  <tr>
+                    <td><span class="dot"></span></td><td>1</td><td>Tahir</td><td class="wickets">5</td>
                     </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td >2</td>
-                        <td>Hassan</td>
-                        <td>3</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>3</td>
-                        <td>Faizan</td>
-                        <td>3</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>4</td>
-                        <td>Ahmed</td>
-                        <td>2</td>
-                        
-                    </tr>
-                    <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td>5</td>
-                        <td>Umer</td>
-                        <td>1</td>
-                        
-                    </tr>
-                    <tr>
-                        <td style="color: red;"><i class="fas fa-chevron-down"></i></td>
-                        <td>6</td>
-                        <td>Arham</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td style="color: red;"><i class="fas fa-chevron-down"></i></td>
-                        <td>7</td>
-                        <td>Haider</td>
-                        <td>0</td>
-                        
-                    </tr>
-               
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>8</td>
-                        <td>Ayyan</td>
-                        <td>0</td>
-                    </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>2</td> <td>Hassan</td><td class="wickets">3</td>
+                  </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>3</td><td>Faizan</td><td class="wickets">3</td>
+                  </tr>
+                  <tr>
+                    <td style="color: red;"><i class="fas fa-chevron-down"></i></td><td>4</td><td>Ahmed</td><td class="wickets">2</td>
+                  </tr>
+                  <tr>
+                    <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>5</td><td>Umer</td><td class="wickets">3</td>
+                  </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>6</td><td>Arham</td><td class="wickets">0</td>
+                  </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>7</td><td>Haider</td><td class="wickets">0</td>
+                  </tr>
+                  <tr>
+                    <td><span class="dot"></span></td><td>8</td><td>Ayyan</td><td class="wickets">0</td>
+                  </tr>
                 </tbody>
-            </table>
-
+              </table>
             </div>
           </div>
       
-          <!-- Switch to toggle the flip (inside the card) -->
-        
         </div>
+
         <div class="flip-switch" onclick="flipCard(this)">
             <span class="switch-circle"></span>
           </div>
+
       </div>
+   
+        
+      
    
       <div class="flip-card">
         <div class="flip-card-inner">
@@ -223,63 +164,34 @@
                         <th>6's</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="sixesTable">
                     <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td>1</td>
-                        <td>Hassan</td>
-                        <td>6</td>
-                    
+                      <td style="color: red;"><i class="fas fa-chevron-down"></i></td><td>1</td><td>Hassan</td><td class="sixes">6</td>
                     </tr>
                     <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td >2</td>
-                        <td>Tahir</td>
-                        <td>5</td>
+                     <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>2</td><td>Tahir</td><td class="sixes">7</td>
+                    </tr>
+                    <tr>
+                      <td><span class="dot"></span></td><td>3</td><td>Faizan</td><td class="sixes">3</td>
+                    </tr>
+                    <tr>
+                      <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>5</td><td>Ahmed</td><td class="sixes">2</td>
+
+                    </tr>
+                    <tr>
+                      <td style="color: red;"><i class="fas fa-chevron-down"></i></td><td>4</td><td>Haider</td><td class="sixes">2</td>
+                    </tr>
+                    <tr>
+                      <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>7</td><td>Umer</td><td class="sixes">1</td>
                         
                     </tr>
                     <tr>
-                        <td style="color: red;"><i class="fas fa-chevron-down"></i></td>
-                        <td>3</td>
-                        <td>Faizan</td>
-                        <td>3</td>
-                        
+                      <td style="color: red;"><i class="fas fa-chevron-down"></i></td><td>6</td><td>Arham</td><td class="sixes">1</td>
                     </tr>
                     <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td>4</td>
-                        <td>Haider</td>
-                        <td>1</td>
-                        
+                        <td><span class="dot"></span></td><td>8</td><td>Ayyan</td><td class="sixes">0</td>
                     </tr>
-                    <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td>5</td>
-                        <td>Ahmed</td>
-                        <td>1</td>
-                        
-                    </tr>
-                    <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td>6</td>
-                        <td>Arham</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>7</td>
-                        <td>Umer</td>
-                        <td>0</td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <td><span class="dot"></span></td>
-                        <td>8</td>
-                        <td>Ayyan</td>
-                        <td>0</td>
-                    </tr>
-                </tbody>
+                  </tbody>
             </table>
             </div>
           </div>
@@ -298,63 +210,32 @@
                         <th>4's</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="foursTable">
                     <tr>
-                        <td><span class="dot"></span></td>
-                        <td >1</td>
-                        <td>Hassan</td>
-                        <td>9</td>
-                    
+                      <td><span class="dot"></span></td><td>1</td><td>Hassan</td><td class="fours">10</td>
                     </tr>
                     <tr>
-                        <td><span class="dot"></span></td>
-                        <td >2</td>
-                        <td>Tahir</td>
-                        <td>7</td>
-                        
+                      <td><span class="dot"></span></td><td>2</td><td>Tahir</td><td class="fours">9</td>
                     </tr>
                     <tr>
-                        <td><span class="dot"></span></td>
-                        <td >3</td>
-                        <td>Faizan</td>
-                        <td>3</td>
-                        
+                      <td style="color: red;"><i class="fas fa-chevron-down"></i></td><td>3</td><td>Faizan</td><td class="fours">3</td>
                     </tr>
                     <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td>4</td>
-                        <td>Ahmed</td>
-                        <td>3</td>
-                        
+                      <td style="color: green;"><i class="fas fa-chevron-up"></i></td><td>4</td><td>Ahmed</td><td class="fours">4</td>
                     </tr>
                     <tr>
-                        <td style="color: green;"><i class="fas fa-chevron-up"></i></td>
-                        <td>5</td>
-                        <td>Umer</td>
-                        <td>3</td>
-                        
+                      <td><span class="dot"></span></td><td>5</td><td>Umer</td><td class="fours">3</td>
                     </tr>
                     <tr>
-                        <td style="color: red;"><i class="fas fa-chevron-down"></i></td>
-                        <td>6</td>
-                        <td>Haider</td>
-                        <td>1</td>
+                      <td><span class="dot"></span></td><td>6</td><td>Haider</td><td class="fours">1</td>
                     </tr>
                     <tr>
-                        <td><span class="dot"></span></td>
-                        <td>7</td>
-                        <td>Arham</td>
-                        <td>0</td>
-                        
+                        <td><span class="dot"></span></td><td>7</td><td>Arham</td><td class="fours">0</td>
                     </tr>
-                 
                     <tr>
-                        <td><span class="dot"></span></td>
-                        <td>8</td>
-                        <td>Ayyan</td>
-                        <td>0</td>
+                        <td><span class="dot"></span></td><td>8</td><td>Ayyan</td><td class="fours">0</td>
                     </tr>
-                </tbody>
+                  </tbody>
             </table>
 
             </div>
@@ -384,7 +265,11 @@
         </div>
       </div>
 
-    <script src="script.js"></script>
+    <script src="script.js">
+
+   
+
+    </script>
 </body>
 </html>
 
