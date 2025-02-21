@@ -186,7 +186,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: flex;
-  box-shadow: inset 2px 2px 15px #333 ;
+  box-shadow: inset 2px 2px 15px black ;
    /* Ensure it's above the card content */
 }
 
