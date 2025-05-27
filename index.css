@@ -13,13 +13,14 @@ body, html {
     top: 0;
     left: 0;
     width: 100%; /* Full width */
-    background-color:  #071d67; /* ICC-style background */
+    background-color: black; /* ICC-style background */
     color: white;
     z-index: 1000;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
     height: 70px;
   }
-  
+
+
   .navbar-container {
     height: 50px;
     display: flex;
@@ -67,7 +68,7 @@ body, html {
       top: 50px; /* Below the navbar */
       right: 20px;
       width: 84%;
-      background-color: #071d67;
+      background-color: black;
       box-shadow: 0 4px 18px #ffffff;
       padding: 10px ;
     }
@@ -249,7 +250,7 @@ body, html {
 }
 
 .rank-table th {
-    background-color: #071d67;
+    background-color: black;
     color: white;
     font-weight: bolder;
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css  ">
+    <style>
+        .video-container {
+  position: relative;
+  padding-bottom: 133.33%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  width: 80%;
+  background: #000;
+  border-radius: 8px;
+  margin: 40px auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.h1{
+ text-align: center;
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ margin: 40px auto;
+ font-size: 50px;
+
+}
+    </style>
+</head>
+<body>
+      <nav class="navbar">
+        <div class="navbar-container">
+          <div class="brand"><img src="./icc.png" alt=""></div>
+          <button class="toggle" id="toggle">☰</button>
+          <div class="menu" id="menu">
+            <!-- <a href="matches.html">Matches</a> -->
+            <a href="index.html">Home</a>
+            
+           
+          </div>
+        </div>
+      </nav>
+
+      <h1 class="h1">VIDEOS</h1>
+
+    <div class="video-container">
+  <video controls>
+    <source src="six.mp4" type="video/mp4">
+    
+  </video>
+</div>
+
+
+</body>
+</html>
