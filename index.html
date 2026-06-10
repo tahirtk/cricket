@@ -2,287 +2,861 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="Viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
-    <title>Players Statistics</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Cricket Leaderboard | Full Manual Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0a0c10;
+            min-height: 100vh;
+            padding: 1.5rem 1rem;
+            color: #eef2f8;
+        }
+        .cricket-dashboard { max-width: 1300px; margin: 0 auto; }
+        .brand-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            gap: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #1e2a3e;
+        }
+        .title-section h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #7f9fbf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .title-section p { color: #8e9eb0; font-size: 0.75rem; margin-top: 0.2rem; }
+        .admin-actions { display: flex; gap: 0.8rem; }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #2c3e5c;
+            color: #cfdfed;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover { background: #1e2e44; border-color: #5f7f9e; }
+        .rivalry-card {
+            background: #0f141c;
+            border-radius: 1.5rem;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #1e2a3a;
+            text-align: center;
+        }
+        .rivalry-title {
+            font-weight: 600;
+            color: #c6defa;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+        }
+        .rivalry-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 0.4rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 0.25rem;
+        }
+        .team-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: #0c1824;
+            padding: 0.25rem 0.6rem;
+            border-radius: 40px;
+            white-space: nowrap;
+        }
+        .wins-number {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: #0a1620;
+            padding: 0.15rem 0.6rem;
+            border-radius: 30px;
+            min-width: 60px;
+            display: inline-block;
+        }
+        .win-green { color: #4caf50; }
+        .lose-red { color: #f44336; }
+        .neutral-white { color: #ffd966; }
+        .vs-text { font-size: 0.9rem; color: #8aadcc; font-weight: 500; }
+        .admin-wins-controls { display: inline-flex; gap: 0.3rem; margin-left: 0.3rem; }
+        .counter-btn {
+            background: #1f2f40;
+            border: none;
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 26px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .counter-btn:hover { background: #3b5a7c; }
+        .total-matches-row {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            color: #bbd4f0;
+            border-top: 1px dashed #2a4058;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: #0a1620;
+            border-radius: 40px;
+        }
+        .visitor-note { font-size: 0.7rem; color: #7a8ea8; margin-top: 0.6rem; }
+        @media (max-width: 550px) {
+            .team-name { font-size: 0.7rem; padding: 0.2rem 0.4rem; }
+            .wins-number { font-size: 1.1rem; min-width: 45px; }
+            .vs-text { font-size: 0.8rem; }
+            .counter-btn { width: 22px; height: 22px; font-size: 0.7rem; }
+            .rivalry-stats { gap: 0.2rem; }
+        }
+        .leaderboard-card {
+            background: #0f141c;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1rem;
+            border: 1px solid #1e2a3a;
+            margin-bottom: 1.8rem;
+        }
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.5rem 0.8rem 0.5rem;
+            border-bottom: 1px solid #1e2f40;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .leaderboard-header h2 { font-size: 1.3rem; font-weight: 600; color: #eef2fc; }
+        .total-runs-badge {
+            background: #0a1620;
+            border-radius: 60px;
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            border: 1px solid #2a4058;
+        }
+        .players-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .player-card {
+            background: #0c1824;
+            border-radius: 1.2rem;
+            padding: 0.9rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            border-left: 3px solid #3e6082;
+        }
+        .player-card:hover { background: #111e2c; }
+        .player-rank { font-weight: 700; color: #c0d4f0; min-width: 45px; }
+        .player-name { font-weight: 600; flex: 2; min-width: 120px; display: flex; align-items: center; gap: 8px; }
+        .player-matches, .player-runs { font-weight: 500; min-width: 60px; text-align: center; }
+        .player-runs { font-weight: 800; color: #f0f4fa; font-size: 1.1rem; }
+        .stats-btn-small {
+            background: #1f2e3e;
+            border: none;
+            color: #e0eaff;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+        @media (max-width: 700px) {
+            .player-card { flex-direction: column; align-items: stretch; }
+            .player-card > div { display: flex; justify-content: space-between; padding: 4px 0; }
+            .stats-btn-small { align-self: flex-start; }
+        }
+        .admin-section {
+            background: #0b1119;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            border: 1px solid #253549;
+            margin-top: 1rem;
+        }
+        .admin-title { color: #c6defa; font-weight: 500; margin-bottom: 1rem; }
+        .admin-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .admin-player-card {
+            background: #0f1822;
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            min-width: 240px;
+            flex: 1 0 230px;
+            border-left: 3px solid #3e6082;
+        }
+        .admin-player-name {
+            font-weight: 600;
+            color: #eef4ff;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            background: #0c1824;
+            padding: 5px 10px;
+            border-radius: 30px;
+            margin: 5px 0;
+            font-size: 0.8rem;
+        }
+        .edit-group {
+            display: flex;
+            gap: 6px;
+            margin: 8px 0;
+            flex-wrap: wrap;
+        }
+        .edit-group button {
+            background: #1f2f40;
+            border: none;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 28px;
+            cursor: pointer;
+        }
+        .edit-group input {
+            width: 60px;
+            background: #10212e;
+            border: 1px solid #3b5a7c;
+            border-radius: 30px;
+            padding: 5px;
+            color: white;
+            text-align: center;
+        }
+        .add-player-form {
+            background: #0c1722;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .form-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .form-field { display: flex; flex-direction: column; gap: 3px; }
+        .form-field input {
+            background: #10212e;
+            border: 1px solid #2c4764;
+            border-radius: 30px;
+            padding: 6px 10px;
+            width: 120px;
+            color: white;
+        }
+        .add-player-btn {
+            background: #2a405c;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+        }
+        .delete-player-btn {
+            background: #3a2a2a;
+            border: none;
+            border-radius: 30px;
+            padding: 2px 10px;
+            color: #f0cccc;
+            cursor: pointer;
+        }
+        
+        /* Attractive Stats Modal (No Emojis) */
+        .modal-stats {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        .stats-card {
+            background: linear-gradient(145deg, #0e1a24, #08121a);
+            border-radius: 2rem;
+            width: 100%;
+            max-width: 380px;
+            padding: 0;
+            border: 1px solid rgba(75, 110, 148, 0.6);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 200, 100, 0.1);
+            overflow: hidden;
+            animation: fadeSlideUp 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(25px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .stats-header {
+            background: linear-gradient(105deg, #102433, #06101a);
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #ffcd6b;
+        }
+        .stats-header h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #fff8e7, #ffcd7e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+        }
+        .stats-badge {
+            display: inline-block;
+            background: #ffaa3340;
+            border-radius: 60px;
+            padding: 0.2rem 0.9rem;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+            color: #ffdd99;
+            font-weight: 500;
+        }
+        .stats-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            padding: 1.5rem;
+        }
+        .stat-item {
+            background: #0b1a26;
+            border-radius: 1.2rem;
+            padding: 0.7rem 0.4rem;
+            text-align: center;
+            transition: all 0.2s;
+            border: 1px solid #253e52;
+        }
+        .stat-item:hover {
+            transform: translateY(-2px);
+            background: #0f2232;
+            border-color: #ffaa55;
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #9cbad6;
+            font-weight: 500;
+        }
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffeaaf;
+            line-height: 1.3;
+        }
+        .close-modal {
+            background: #2a4565;
+            border: none;
+            padding: 12px;
+            border-radius: 3rem;
+            font-weight: 600;
+            width: calc(100% - 2rem);
+            margin: 0 1rem 1.2rem 1rem;
+            cursor: pointer;
+            color: #f0f6ff;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .close-modal:hover {
+            background: #ffaa33;
+            color: #0a1a24;
+        }
+        @media (max-width: 450px) {
+            .stats-detail { gap: 0.5rem; padding: 1.2rem; }
+            .stat-value { font-size: 1.1rem; }
+            .stats-header h3 { font-size: 1.4rem; }
+        }
 
-.dot{
-  width: 8px;
-  height: 8px;
-  background-color: lightgray;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-
-
-
-
-   
+        .note-visitor { font-size: 0.7rem; color: #7a8ea8; text-align: right; margin-top: 12px; }
     </style>
 </head>
-<body>  
-  
-
-    <nav class="navbar1">
-        <div class="navbar-container">
-          <div class="brand"><img src="./icc.png" alt=""></div>
-          <button class="toggle" id="toggle">☰</button>
-          <div class="menu" id="menu">
-            <a href="matches.html">Matches</a>
-            <a href="videos.html">Videos</a>
-            <a href="#">Shop</a>
-           
-          </div>
+<body>
+<div class="cricket-dashboard">
+    <div class="brand-header">
+        <div class="title-section">
+            <h1><i class="fas fa-chart-line"></i>PLAYER STATISTICS</h1>
+            
         </div>
-      </nav>
-
-
-    <div class="match-score">
-        <div class="team">Team A</div>
-        <div class="score">19</div>
-        <div class="slash">-</div>
-        <div class="score2">16</div>
-        <div class="team">Team T</div>
-    </div>
-
-
-    
-   
-            <div class="rank-box">
-              <h2>Runs</h2>
-              <table class="rank-table">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Player</th>
-                    <th>Runs</th>
-                    <th>Statistics</th>
-                  </tr>
-                </thead>
-                <tbody id="runsTable">
-                  <tr>
-
-
-                    
-<td></td><td>Hassan</td><td id="hassanruns" class="runs">197</td><td>
-                    
-
-  <button class="statsbtn" onclick="showStats('Hassan')">View</button>
-
-
-    
-
-
-
-                  </td>
-                  </tr>
-                  <tr>
-
-
-
- <td></td><td>Tahir</td><td id="tahirruns" class="runs">358</td><td>
-
-   <button class="statsbtn"  onclick="showStats('Tahir')">View</button>
-
- 
-
-
-                  </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Faizan</td><td class="runs">189</td><td>
-
-   <button class="statsbtn" onclick="showStats('Faizan')">View</button>
-   
-
-  
-
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Haider</td><td class="runs">162</td><td>
-
-   <button class="statsbtn" onclick="showStats('Haider')">View</button>
-  
-
-   
-
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Ahmed</td><td class="runs">108</td><td>
-                      <button class="statsbtn" onclick="showStats('Ahmed')">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Umer</td><td class="runs">116</td><td>
-                      <button class="statsbtn" onclick="showStats('Umer')">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Arham</td><td class="runs">33</td><td>
-                      <button class="statsbtn" onclick="showStats('Arham')">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Arooj</td><td class="runs">45</td><td>
-                      <button class="statsbtn" onclick="showStats('Arooj')">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Mohiyudin</td><td class="runs">51</td><td>
-                      <button class="statsbtn" onclick="showStats('Mohiyudin')">View</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td><td>Faiz</td><td class="runs">92</td><td>
-                      <button class="statsbtn" onclick="showStats('Faiz')">View</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-     
-           
-            <div id="statsCard" style="display:none; 
-                           position:fixed; 
-                           top:50%; left:50%; 
-                           transform:translate(-50%, -50%); 
-                           background:#1e293b; 
-                           color:white; 
-                           padding:20px; 
-                           border-radius:10px;
-                           width:90%;
-                           box-shadow:0 5px 20px rgba(0,0,0,0.5);">
-  <span style="float:right;cursor:pointer;" onclick="closeCard()">✖</span>
-   <div class="profile-container">
-  
-  <div class="profile-card">
-    
-    <div class="profile-header">
-      <h2 id="cardName"></h2>
-    </div>
-    
-    
-    <div  style="background-color: white;" class="profile-stats">
-      <div class="stat">
-        <h3 style="color: black; font-family: 'Times New Roman', Times, serif;">Innings</h3>
-        <h3 id="cardMatches"></h3>
-      </div>
-
-      <div class="stat">
-        <h3 style="color: black; font-family: 'Times New Roman', Times, serif;">Runs</h3>
-        <h3 id="cardRuns"></h3>
-      </div>
-
-      <div class="stat">
-        <h3 style="color: black; font-family: 'Times New Roman', Times, serif;">Sixes</h3>
-        <h3 id="cardSix"></h3>
-      </div>
-
-      <div class="stat">
-        <h3 style="color: black; font-family: 'Times New Roman', Times, serif;">Fours</h3>
-        <h3 id="cardFour"></h3></div>
-    </div>
-
-  </div>
-
-</div>
-</div>
-      
-
-
-            <div class="rank-box">
-              <h2>Wickets</h2>
-              <table class="rank-table">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Overs</th>
-                    <th>Player</th>
-                    <th>Wickets</th>
-                  </tr>
-                </thead>
-                <tbody id="wicketsTable">
-                  <tr>
-                    <td></td><td>33.5</td><td>Tahir</td><td class="wickets">12</td>
-                    </tr>
-                  <tr>
-                    <td></td><td>25</td> <td>Hassan</td><td class="wickets">11</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>24.2</td><td>Faizan</td><td class="wickets">8</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>27.3</td><td>Ahmed</td><td class="wickets">5</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>23</td><td>Umer</td><td class="wickets">6</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>0</td><td>Arham</td><td class="wickets">0</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>26.5</td><td>Haider</td><td class="wickets">11</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>2</td><td>Arooj</td><td class="wickets">2</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>1</td><td>Mohiyudin</td><td class="runs">1</td>
-                  </tr>
-                  <tr>
-                    <td></td><td>2</td><td>Faiz</td><td class="runs">0</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-      
-   
-        
-      
-   
-     
-    
-
-    <div class="footer">
-  
-
-        <hr style="width: 90%; color: black;">
-
-        
-      
-        <div class="legal">
-            <img src="./icc2.png" alt="">
-          <p></p>
-          
+        <div class="admin-actions">
+            <button id="adminLoginBtn" class="btn-outline"><i class="fas fa-lock"></i> Admin</button>
+            <button id="adminLogoutBtn" class="btn-outline" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </div>
-      </div>
+    </div>
 
-  
+    <div class="rivalry-card">
+        <div class="rivalry-title"><i class="fas fa-flag-checkered"></i> RIVALRY SERIES</div>
+        <div class="rivalry-stats">
+            <span class="team-name">TEAM A</span>
+            <span class="wins-number" id="teamAWinsDisplay"></span>
+            <span class="vs-text">VS</span>
+            <span class="wins-number" id="teamBWinsDisplay"></span>
+            <span class="team-name">TEAM T</span>
+            <div id="adminRivalryControls" style="display: none; margin-left: 0.3rem;">
+                <button id="decTeamA" class="counter-btn">-1</button>
+                <button id="incTeamA" class="counter-btn">+1</button>
+                <button id="decTeamB" class="counter-btn">-1</button>
+                <button id="incTeamB" class="counter-btn">+1</button>
+                <button id="resetRivalry" class="counter-btn" style="width: auto; padding: 0 8px;">reset</button>
+            </div>
+        </div>
+        <div class="total-matches-row" id="totalMatchesDisplay">Total matches:</div>
+        <div class="visitor-note" id="rivalryVisitorNote"></div>
+    </div>
 
+    <div class="leaderboard-card">
+        <div class="leaderboard-header">
+            <h2><i class="fas fa-trophy"></i> TOP RUN SCORERS</h2>
+            <div class="total-runs-badge"><i class="fas fa-chart-pie"></i> <span id="totalRunsDisplay">0</span> total runs</div>
+        </div>
+        <div id="playersListContainer" class="players-list"></div>
+        <div class="note-visitor"><i class="fas fa-database"></i></div>
+    </div>
 
+    <div id="adminPanelContainer" style="display: none;"></div>
+</div>
 
-    <script src="script.js">
+<div id="statsModal" class="modal-stats"><div class="stats-card" id="statsCardContent"></div></div>
 
-   
+<script>
+    // ---------- DEFAULT DATA (first load only, no reset button) ----------
+    const DEFAULT_PLAYERS = [
+        { id: 1, name: "Virat Kohli", runs: 762, matches: 10, wickets: 0, sixes: 28, fours: 68, average: 76.2, strikeRate: 98.5 },
+        { id: 2, name: "Rohit Sharma", runs: 648, matches: 10, wickets: 1, sixes: 32, fours: 54, average: 64.8, strikeRate: 108.2 },
+        { id: 3, name: "Jos Buttler", runs: 712, matches: 10, wickets: 0, sixes: 38, fours: 60, average: 71.2, strikeRate: 115.7 },
+        { id: 4, name: "Steve Smith", runs: 590, matches: 10, wickets: 0, sixes: 12, fours: 58, average: 59.0, strikeRate: 85.6 },
+        { id: 5, name: "KL Rahul", runs: 524, matches: 9, wickets: 0, sixes: 18, fours: 48, average: 58.2, strikeRate: 92.3 },
+        { id: 6, name: "Glenn Maxwell", runs: 485, matches: 9, wickets: 6, sixes: 34, fours: 32, average: 60.6, strikeRate: 152.4 },
+        { id: 7, name: "Babar Azam", runs: 675, matches: 10, wickets: 0, sixes: 22, fours: 66, average: 67.5, strikeRate: 88.9 }
+    ];
 
-    </script>
+    const DEFAULT_RIVALRY = { teamAWins: 0, teamBWins: 0 };
 
+    let players = [];
+    let teamAWins = 0;
+    let teamBWins = 0;
+    let nextId = 1;
 
+    function recalcAverage(p) {
+        p.average = p.matches > 0 ? parseFloat((p.runs / p.matches).toFixed(1)) : 0;
+        return p;
+    }
+
+    function updateNextId() {
+        let max = 0;
+        players.forEach(p => { if (p.id > max) max = p.id; });
+        nextId = max + 1;
+    }
+
+    function savePlayers() { localStorage.setItem('cricketPlayers', JSON.stringify(players)); }
+    function saveRivalry() { localStorage.setItem('cricketRivalry', JSON.stringify({ teamAWins, teamBWins })); }
+
+    function loadData() {
+        const storedPlayers = localStorage.getItem('cricketPlayers');
+        if (storedPlayers) {
+            players = JSON.parse(storedPlayers);
+            players.forEach(p => recalcAverage(p));
+            updateNextId();
+        } else {
+            players = DEFAULT_PLAYERS.map(p => ({ ...p }));
+            players.forEach(p => recalcAverage(p));
+            nextId = 8;
+            savePlayers(); // persist initial
+        }
+        const storedRivalry = localStorage.getItem('cricketRivalry');
+        if (storedRivalry) {
+            const rivalry = JSON.parse(storedRivalry);
+            teamAWins = rivalry.teamAWins;
+            teamBWins = rivalry.teamBWins;
+        } else {
+            teamAWins = DEFAULT_RIVALRY.teamAWins;
+            teamBWins = DEFAULT_RIVALRY.teamBWins;
+            saveRivalry();
+        }
+    }
+
+    function updatePlayerStat(playerId, field, value) {
+        const player = players.find(p => p.id === playerId);
+        if (!player) return false;
+        let newVal = (field === 'strikeRate') ? parseFloat(value) : parseInt(value);
+        if (isNaN(newVal)) newVal = 0;
+        if (newVal < 0) newVal = 0;
+        player[field] = newVal;
+        if (field === 'runs' || field === 'matches') recalcAverage(player);
+        savePlayers();
+        return true;
+    }
+
+    function adjustStat(playerId, field, delta) {
+        const player = players.find(p => p.id === playerId);
+        if (!player) return;
+        let newVal = player[field] + delta;
+        if (newVal < 0) newVal = 0;
+        updatePlayerStat(playerId, field, newVal);
+        fullRefresh();
+    }
+
+    function setExactStat(playerId, field, rawValue) {
+        let num = (field === 'strikeRate') ? parseFloat(rawValue) : parseInt(rawValue);
+        if (isNaN(num)) num = 0;
+        if (num < 0) num = 0;
+        updatePlayerStat(playerId, field, num);
+        fullRefresh();
+    }
+
+    function addNewPlayer(name, runs, matches, sixes, fours, wickets, strikeRate) {
+        if (!name || name.trim() === "") { alert("Name required"); return false; }
+        const newId = nextId++;
+        const newPlayer = {
+            id: newId, name: name.trim(), runs: parseInt(runs)||0, matches: parseInt(matches)||0,
+            wickets: parseInt(wickets)||0, sixes: parseInt(sixes)||0, fours: parseInt(fours)||0,
+            strikeRate: parseFloat(strikeRate)||0, average: 0
+        };
+        recalcAverage(newPlayer);
+        players.push(newPlayer);
+        savePlayers();
+        fullRefresh();
+        return true;
+    }
+
+    function deletePlayer(playerId) {
+        if (confirm("Delete this player permanently?")) {
+            players = players.filter(p => p.id !== playerId);
+            savePlayers();
+            updateNextId();
+            fullRefresh();
+        }
+    }
+
+    function updateTeamAWins(delta) {
+        let newVal = teamAWins + delta;
+        if (newVal < 0) newVal = 0;
+        if (newVal !== teamAWins) {
+            teamAWins = newVal;
+            saveRivalry();
+            updateRivalryUI();
+        }
+    }
+
+    function updateTeamBWins(delta) {
+        let newVal = teamBWins + delta;
+        if (newVal < 0) newVal = 0;
+        if (newVal !== teamBWins) {
+            teamBWins = newVal;
+            saveRivalry();
+            updateRivalryUI();
+        }
+    }
+
+    function resetRivalryToDefault() {
+        teamAWins = DEFAULT_RIVALRY.teamAWins;
+        teamBWins = DEFAULT_RIVALRY.teamBWins;
+        saveRivalry();
+        updateRivalryUI();
+    }
+
+    function updateRivalryUI() {
+        const teamAElem = document.getElementById('teamAWinsDisplay');
+        const teamBElem = document.getElementById('teamBWinsDisplay');
+        teamAElem.innerText = teamAWins;
+        teamBElem.innerText = teamBWins;
+        teamAElem.classList.remove('win-green', 'lose-red', 'neutral-white');
+        teamBElem.classList.remove('win-green', 'lose-red', 'neutral-white');
+        if (teamAWins > teamBWins) {
+            teamAElem.classList.add('win-green');
+            teamBElem.classList.add('lose-red');
+        } else if (teamBWins > teamAWins) {
+            teamAElem.classList.add('lose-red');
+            teamBElem.classList.add('win-green');
+        } else {
+            teamAElem.classList.add('neutral-white');
+            teamBElem.classList.add('neutral-white');
+        }
+        const totalMatches = teamAWins + teamBWins;
+        document.getElementById('totalMatchesDisplay').innerText = `Total matches: ${totalMatches}`;
+    }
+
+    function renderLeaderboard() {
+        const sorted = [...players].sort((a,b) => b.runs - a.runs || a.id - b.id);
+        const container = document.getElementById('playersListContainer');
+        container.innerHTML = '';
+        let totalRuns = 0;
+        sorted.forEach((p, idx) => {
+            totalRuns += p.runs;
+            const card = document.createElement('div');
+            card.className = 'player-card';
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 8px;">
+                    <div class="player-rank">${idx === 0 ? '#1' : `#${idx+1}`}</div>
+                    <div class="player-name"><i class="fas fa-user-circle"></i> ${p.name}</div>
+                    <div class="player-matches">Mat: ${p.matches}</div>
+                    <div class="player-runs">${p.runs} runs</div>
+                    <button class="stats-btn-small" data-id="${p.id}"><i class="fas fa-chart-simple"></i> stats</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+        document.getElementById('totalRunsDisplay').innerText = totalRuns;
+        document.querySelectorAll('.stats-btn-small').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                openStatsModal(id);
+            });
+        });
+    }
+
+    let isAdmin = false;
+    const ADMIN_PW = "cricket2024";
+
+    function renderAdminPanel() {
+        const container = document.getElementById('adminPanelContainer');
+        if (!isAdmin) {
+            container.style.display = 'none';
+            container.innerHTML = '';
+            return;
+        }
+        container.style.display = 'block';
+        let html = `<div class="admin-section">
+            <div class="admin-title"><i class="fas fa-sliders-h"></i> Admin Editor — Edit Runs, Matches, 6s, 4s, Wickets, SR</div>
+            <div class="admin-grid">`;
+        players.forEach(p => {
+            html += `
+                <div class="admin-player-card">
+                    <div class="admin-player-name">
+                        ${p.name}
+                        <button class="delete-player-btn" data-id="${p.id}"><i class="fas fa-trash"></i> del</button>
+                    </div>
+                    <div class="stat-row"><span>Runs</span><span>${p.runs}</span></div>
+                    <div class="edit-group">
+                        <button class="adj-run" data-id="${p.id}" data-delta="-10">-10</button>
+                        <button class="adj-run" data-id="${p.id}" data-delta="-1">-1</button>
+                        <button class="adj-run" data-id="${p.id}" data-delta="1">+1</button>
+                        <button class="adj-run" data-id="${p.id}" data-delta="10">+10</button>
+                        <input type="number" class="set-run" data-id="${p.id}" id="setRun-${p.id}" value="${p.runs}">
+                        <button class="set-run-btn" data-id="${p.id}">Set</button>
+                    </div>
+                    <div class="stat-row"><span>Matches</span><span>${p.matches}</span></div>
+                    <div class="edit-group">
+                        <button class="adj-match" data-id="${p.id}" data-delta="-1">-1</button>
+                        <button class="adj-match" data-id="${p.id}" data-delta="1">+1</button>
+                        <input type="number" class="set-match" data-id="${p.id}" id="setMatch-${p.id}" value="${p.matches}">
+                        <button class="set-match-btn" data-id="${p.id}">Set</button>
+                    </div>
+                    <div class="stat-row"><span>Sixes</span><span>${p.sixes}</span></div>
+                    <div class="edit-group">
+                        <button class="adj-six" data-id="${p.id}" data-delta="-1">-1</button>
+                        <button class="adj-six" data-id="${p.id}" data-delta="1">+1</button>
+                        <input type="number" class="set-six" data-id="${p.id}" id="setSix-${p.id}" value="${p.sixes}">
+                        <button class="set-six-btn" data-id="${p.id}">Set</button>
+                    </div>
+                    <div class="stat-row"><span>Fours</span><span>${p.fours}</span></div>
+                    <div class="edit-group">
+                        <button class="adj-four" data-id="${p.id}" data-delta="-1">-1</button>
+                        <button class="adj-four" data-id="${p.id}" data-delta="1">+1</button>
+                        <input type="number" class="set-four" data-id="${p.id}" id="setFour-${p.id}" value="${p.fours}">
+                        <button class="set-four-btn" data-id="${p.id}">Set</button>
+                    </div>
+                    <div class="stat-row"><span>Wickets</span><span>${p.wickets}</span></div>
+                    <div class="edit-group">
+                        <button class="adj-wicket" data-id="${p.id}" data-delta="-1">-1</button>
+                        <button class="adj-wicket" data-id="${p.id}" data-delta="1">+1</button>
+                        <input type="number" class="set-wicket" data-id="${p.id}" id="setWicket-${p.id}" value="${p.wickets}">
+                        <button class="set-wicket-btn" data-id="${p.id}">Set</button>
+                    </div>
+                    <div class="stat-row"><span>Overs</span><span>${p.strikeRate}</span></div>
+                    <div class="edit-group">
+                        <button class="adj-sr" data-id="${p.id}" data-delta="-5">-5</button>
+                        <button class="adj-sr" data-id="${p.id}" data-delta="5">+5</button>
+                        <input type="number" step="0.1" class="set-sr" data-id="${p.id}" id="setSR-${p.id}" value="${p.strikeRate}">
+                        <button class="set-sr-btn" data-id="${p.id}">Set</button>
+                    </div>
+                </div>
+            `;
+        });
+        html += `</div>
+            <div class="add-player-form">
+                <h4>Register New Player</h4>
+                <div class="form-grid">
+                    <div class="form-field"><label>Name</label><input type="text" id="newPlayerName" placeholder="Player name"></div>
+                    <div class="form-field"><label>Runs</label><input type="number" id="newRuns" value=""></div>
+                    <div class="form-field"><label>Matches</label><input type="number" id="newMatches" value=""></div>
+                    <div class="form-field"><label>Sixes</label><input type="number" id="newSixes" value=""></div>
+                    <div class="form-field"><label>Fours</label><input type="number" id="newFours" value=""></div>
+                    <div class="form-field"><label>Wickets</label><input type="number" id="newWickets" value=""></div>
+                    <div class="form-field"><label>Overs</label><input type="number" step="0.1" id="newSR" value=""></div>
+                    <div><button id="confirmAddPlayerBtn" class="add-player-btn">Add Player</button></div>
+                </div>
+            </div>
+        </div>`;
+        container.innerHTML = html;
+
+        // Attach listeners
+        document.querySelectorAll('.adj-run').forEach(btn => btn.addEventListener('click', (e) => {
+            adjustStat(parseInt(btn.dataset.id), 'runs', parseInt(btn.dataset.delta));
+        }));
+        document.querySelectorAll('.set-run-btn').forEach(btn => btn.addEventListener('click', (e) => {
+            const id = parseInt(btn.dataset.id);
+            setExactStat(id, 'runs', document.getElementById(`setRun-${id}`).value);
+        }));
+        document.querySelectorAll('.adj-match').forEach(btn => btn.addEventListener('click', (e) => {
+            adjustStat(parseInt(btn.dataset.id), 'matches', parseInt(btn.dataset.delta));
+        }));
+        document.querySelectorAll('.set-match-btn').forEach(btn => btn.addEventListener('click', (e) => {
+            const id = parseInt(btn.dataset.id);
+            setExactStat(id, 'matches', document.getElementById(`setMatch-${id}`).value);
+        }));
+        document.querySelectorAll('.adj-six').forEach(btn => btn.addEventListener('click', (e) => {
+            adjustStat(parseInt(btn.dataset.id), 'sixes', parseInt(btn.dataset.delta));
+        }));
+        document.querySelectorAll('.set-six-btn').forEach(btn => btn.addEventListener('click', (e) => {
+            const id = parseInt(btn.dataset.id);
+            setExactStat(id, 'sixes', document.getElementById(`setSix-${id}`).value);
+        }));
+        document.querySelectorAll('.adj-four').forEach(btn => btn.addEventListener('click', (e) => {
+            adjustStat(parseInt(btn.dataset.id), 'fours', parseInt(btn.dataset.delta));
+        }));
+        document.querySelectorAll('.set-four-btn').forEach(btn => btn.addEventListener('click', (e) => {
+            const id = parseInt(btn.dataset.id);
+            setExactStat(id, 'fours', document.getElementById(`setFour-${id}`).value);
+        }));
+        document.querySelectorAll('.adj-wicket').forEach(btn => btn.addEventListener('click', (e) => {
+            adjustStat(parseInt(btn.dataset.id), 'wickets', parseInt(btn.dataset.delta));
+        }));
+        document.querySelectorAll('.set-wicket-btn').forEach(btn => btn.addEventListener('click', (e) => {
+            const id = parseInt(btn.dataset.id);
+            setExactStat(id, 'wickets', document.getElementById(`setWicket-${id}`).value);
+        }));
+        document.querySelectorAll('.adj-sr').forEach(btn => btn.addEventListener('click', (e) => {
+            const id = parseInt(btn.dataset.id);
+            const delta = parseInt(btn.dataset.delta);
+            const player = players.find(p => p.id === id);
+            if(player) updatePlayerStat(id, 'strikeRate', player.strikeRate + delta);
+            fullRefresh();
+        }));
+        document.querySelectorAll('.set-sr-btn').forEach(btn => btn.addEventListener('click', (e) => {
+            const id = parseInt(btn.dataset.id);
+            const val = parseFloat(document.getElementById(`setSR-${id}`).value);
+            updatePlayerStat(id, 'strikeRate', val);
+            fullRefresh();
+        }));
+        document.querySelectorAll('.delete-player-btn').forEach(btn => btn.addEventListener('click', (e) => {
+            deletePlayer(parseInt(btn.dataset.id));
+        }));
+        const addBtn = document.getElementById('confirmAddPlayerBtn');
+        if(addBtn) addBtn.addEventListener('click', () => {
+            addNewPlayer(
+                document.getElementById('newPlayerName').value,
+                document.getElementById('newRuns').value,
+                document.getElementById('newMatches').value,
+                document.getElementById('newSixes').value,
+                document.getElementById('newFours').value,
+                document.getElementById('newWickets').value,
+                document.getElementById('newSR').value
+            );
+            document.getElementById('newPlayerName').value = '';
+        });
+    }
+
+    function fullRefresh() {
+        renderLeaderboard();
+        if(isAdmin) renderAdminPanel();
+        updateRivalryUI();
+    }
+
+    function openStatsModal(id) {
+        const p = players.find(p => p.id === id);
+        if(!p) return;
+        const modal = document.getElementById('statsModal');
+        const content = document.getElementById('statsCardContent');
+        const boundaryRuns = (p.sixes * 6) + (p.fours * 4);
+        content.innerHTML = `
+            <div class="stats-header">
+                <h3>${p.name}</h3>
+                <div class="stats-badge"><i class="fas fa-crown"></i> elite performer</div>
+            </div>
+            <div class="stats-detail">
+                <div class="stat-item"><div class="stat-label">RUNS</div><div class="stat-value">${p.runs}</div></div>
+                <div class="stat-item"><div class="stat-label">MATCHES</div><div class="stat-value">${p.matches}</div></div>
+                <div class="stat-item"><div class="stat-label">AVG</div><div class="stat-value">${p.average}</div></div>
+                <div class="stat-item"><div class="stat-label">Overs</div><div class="stat-value">${p.strikeRate}</div></div>
+                <div class="stat-item"><div class="stat-label">SIXES</div><div class="stat-value">${p.sixes}</div></div>
+                <div class="stat-item"><div class="stat-label">FOURS</div><div class="stat-value">${p.fours}</div></div>
+                <div class="stat-item"><div class="stat-label">WICKETS</div><div class="stat-value">${p.wickets}</div></div>
+                <div class="stat-item"><div class="stat-label">BOUNDARY RUNS</div><div class="stat-value">${boundaryRuns}</div></div>
+            </div>
+            <button class="close-modal" id="closeStatsBtn"><i class="fas fa-times-circle"></i> Close</button>
+        `;
+        modal.style.display = 'flex';
+        document.getElementById('closeStatsBtn').addEventListener('click', () => modal.style.display = 'none');
+        modal.addEventListener('click', (e) => { if(e.target === modal) modal.style.display = 'none'; });
+    }
+
+    function updateRivalryControlsVisibility() {
+        const controlsDiv = document.getElementById('adminRivalryControls');
+        const note = document.getElementById('rivalryVisitorNote');
+        if (isAdmin) {
+            controlsDiv.style.display = 'inline-flex';
+            note.innerText = 'Admin: use +/- to update wins. Winning team turns green, losing red. Data saves automatically.';
+        } else {
+            controlsDiv.style.display = 'none';
+            note.innerText = 'Black Panthers vs Navy Eagles — winning team in green, losing in red. (Admin only edits)';
+        }
+    }
+
+    function adminLogin() {
+        const pw = prompt("Admin password:");
+        if(pw === ADMIN_PW) {
+            isAdmin = true;
+            document.getElementById('adminLoginBtn').style.display = 'none';
+            document.getElementById('adminLogoutBtn').style.display = 'flex';
+            renderAdminPanel();
+            fullRefresh();
+            updateRivalryControlsVisibility();
+        } else if(pw !== null) alert("Invalid password");
+    }
+    function adminLogout() {
+        isAdmin = false;
+        document.getElementById('adminLoginBtn').style.display = 'flex';
+        document.getElementById('adminLogoutBtn').style.display = 'none';
+        const container = document.getElementById('adminPanelContainer');
+        container.style.display = 'none';
+        container.innerHTML = '';
+        renderLeaderboard();
+        updateRivalryControlsVisibility();
+    }
+
+    function init() {
+        loadData();
+        renderLeaderboard();
+        updateRivalryUI();
+        updateRivalryControlsVisibility();
+        document.getElementById('adminLoginBtn').addEventListener('click', adminLogin);
+        document.getElementById('adminLogoutBtn').addEventListener('click', adminLogout);
+        document.getElementById('statsModal').style.display = 'none';
+        document.getElementById('decTeamA').addEventListener('click', () => { if(isAdmin) updateTeamAWins(-1); });
+        document.getElementById('incTeamA').addEventListener('click', () => { if(isAdmin) updateTeamAWins(1); });
+        document.getElementById('decTeamB').addEventListener('click', () => { if(isAdmin) updateTeamBWins(-1); });
+        document.getElementById('incTeamB').addEventListener('click', () => { if(isAdmin) updateTeamBWins(1); });
+        document.getElementById('resetRivalry').addEventListener('click', () => { if(isAdmin) resetRivalryToDefault(); });
+    }
+    init();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
